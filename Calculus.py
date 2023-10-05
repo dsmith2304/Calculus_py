@@ -30,9 +30,9 @@ class Vector:
         self.xv=xv
         self.yv=yv
         self.zv=zv
-        self.sizex=sx
-        self.sizey=sy
-        self.sizez = sz
+        self.sizex=(sx/2)
+        self.sizey=(sy/2)
+        self.sizez = (sz/2)
         self.mass=mass
         self.gravity = gravity
 
@@ -67,7 +67,7 @@ class Vector:
         xDistance = primaryCalc[0] - secondaryCalc[0]
         yDistance = primaryCalc[1] - secondaryCalc[1]
         zDistance = primaryCalc[2] - secondaryCalc[2]
-        if(xUnitsSize >= abs(xDistance) or yUnitsSize >= abs(yDistance) or zUnitsSize >= abs(zDistance)):
+        if(xUnitsSize >= abs(xDistance) and yUnitsSize >= abs(yDistance) and zUnitsSize >= abs(zDistance)):
             return True
         else:
             return False
@@ -81,7 +81,7 @@ class Vector:
         return vOneSpeed+vTwoSpeed
 
     def calcVectors(primary, secondary,time,acceleration,magnitude):
-        for i in range(0,time):
+        for i in range(1,time):
 
             calcPrimary = primary.calcAtTimeAccel(i,acceleration,magnitude)
             calcSecondary= secondary.calcAtTimeAccel(i,acceleration,magnitude)
@@ -98,7 +98,7 @@ class Vector:
             print()
 def main():
     v = Vector(1,0.5,0,8.2,8.2,0.5,0.07,0.07,0.07,0.15,9.6)
-    t = Vector(5,6,7,-1,-1,-1,1,1,1,0.2,9.6)
+    t = Vector(1,0.5,0,8.15,8.25,0.5,0.07,0.07,0.07,0.15,9.6)
     print(v.calcAtTimeAccelGrav(1,1,1))
     print(v.calcAtTimeAccelGrav(2,1,1))
     print(v.calcAtTimeAccelGrav(3,1,1))
