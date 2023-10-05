@@ -44,10 +44,11 @@ class Vector:
         return(xd*magnitude,yd*magnitude,zd*magnitude)
 
     def calcAtTimeAccelGrav(self,time,acceleration,magnitude):
-        xd = (self.x + self.xv)* pow(acceleration,time)
-        yd = (self.y + self.yv)* pow(acceleration,time)
-        zd = (self.z + self.zv)* pow(acceleration,time)
-        yd = yd - ((self.mass * self.gravity)*time)
+        xd = (self.x + self.xv)* time#pow(acceleration,time)
+        tempYv= self.yv-((self.mass * self.gravity)*time)
+        yd = (self.y + tempYv)* time#pow(acceleration,time)
+        zd = (self.z + self.zv)* time#pow(acceleration,time)
+
         return(xd*magnitude,yd*magnitude,zd*magnitude)
 
     def calcAtTimeAccel(self,time,acceleration,magnitude):
@@ -96,9 +97,15 @@ class Vector:
 
             print()
 def main():
-    v = Vector(1,2,3,1,2,1,1,1,1,0.2,9.6)
+    v = Vector(1,0.5,0,8.2,8.2,0.5,0.07,0.07,0.07,0.15,9.6)
     t = Vector(5,6,7,-1,-1,-1,1,1,1,0.2,9.6)
-    print(v.calcAtTimeAccelGrav(3,1.2,1))
+    print(v.calcAtTimeAccelGrav(1,1,1))
+    print(v.calcAtTimeAccelGrav(2,1,1))
+    print(v.calcAtTimeAccelGrav(3,1,1))
+    print(v.calcAtTimeAccelGrav(4,1,1))
+    print(v.calcAtTimeAccelGrav(5,1,1))
+    print(v.calcAtTimeAccelGrav(6,1,1))
+    print(v.calcAtTimeAccelGrav(6.0335,1,1))
     Vector.calcVectors(v,t,11,1.3,1)
 
 if __name__ == '__main__':
